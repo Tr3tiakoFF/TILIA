@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #include "Tilia/Application.h"
+#include "Tilia/Log.h"
 
 
 
