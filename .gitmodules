@@ -1,0 +1,3 @@
+[submodule "Tilia/vendor/spdlog"]
+	path = Tilia/vendor/spdlog
+	url = https://github.com/gabime/spdlog
