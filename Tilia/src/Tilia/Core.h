@@ -9,3 +9,6 @@
 #else 
 	#error Tilia only support Windows! (for now)
 #endif
+
+
+#define BIT(x) (1 << x) 

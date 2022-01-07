@@ -4,6 +4,9 @@
     <Filter Include="Tilia">
       <UniqueIdentifier>{98772A0E-048C-52BF-CD0D-F61E39E14EF0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tilia\Events">
+      <UniqueIdentifier>{932a6caf-ad65-40c7-bede-0328456e0db6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Tilia.h" />
@@ -18,6 +21,18 @@
     </ClInclude>
     <ClInclude Include="src\Tilia\Log.h">
       <Filter>Tilia</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tilia\Events\ApplicationEvent.h">
+      <Filter>Tilia\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tilia\Events\Event.h">
+      <Filter>Tilia\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tilia\Events\KeyEvent.h">
+      <Filter>Tilia\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tilia\Events\MouseEvent.h">
+      <Filter>Tilia\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
