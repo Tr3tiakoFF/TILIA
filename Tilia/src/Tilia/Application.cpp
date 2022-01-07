@@ -1,3 +1,5 @@
+#include "tlpch.h"
+
 #include "Application.h"
 
 #include "Events/ApplicationEvent.h"

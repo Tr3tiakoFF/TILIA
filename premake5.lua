@@ -19,6 +19,9 @@ project "Tilia"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "tlpch.h"
+	pchsource "Tilia/src/tlpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
