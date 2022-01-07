@@ -11,6 +11,14 @@ workspace "Tilia"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+
+--Include directories reletive to root folder (SolutionDir)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Tilia/vendor/GLFW/include"
+
+include "Tilia/vendor/GLFW"
+
+
 project "Tilia"
 	location "Tilia"
 	kind "SharedLib"
@@ -31,12 +39,19 @@ project "Tilia"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines 
