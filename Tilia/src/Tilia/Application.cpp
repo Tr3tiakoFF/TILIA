@@ -8,47 +8,40 @@
 
 namespace Tilia {
 
+#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
+
 	Application::Application()
 	{
 		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 	}
 
 	Application::~Application()
 	{
 	}
 
+	void Application::OnEvent(Event& e)
+	{
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+
+		TL_CORE_TRACE("{0}", e);
+	}
+
 	void Application::Run()
 	{
-		float R = 0;
-		float B = 1;
-		bool incR = true;
-		bool incB = true;
 		while (m_Running)
 		{
-			glClearColor(R, 0, B, 1);
+			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 			m_Window->OnUpdate();
-
-			if (R >= 1)
-				incR = false;
-			if (R <= 0)
-				incR = true;
-
-			if (incR)
-				R += 0.01;
-			else
-				R -= 0.01;
-
-			if (B >= 1)
-				incB = false;
-			if (B <= 0)
-				incB = true;
-
-			if (incB)
-				B += 0.01;
-			else
-				B -= 0.01;
 		}
 	}
 
+	bool Application::OnWindowClose(WindowCloseEvent& e)
+	{
+		m_Running = false;
+
+		return true;
+	}
 }
