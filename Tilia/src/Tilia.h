@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #include "Tilia/Application.h"
+#include "Tilia/Layer.h"
 #include "Tilia/Log.h"
 
 

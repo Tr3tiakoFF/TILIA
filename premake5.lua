@@ -67,14 +67,17 @@ project "Tilia"
 
 	filter "configurations:Debug"
 		defines "TL_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "TL_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "TL_DIST"
+		buildoptions "/MD"
 		symbols "On"
 		
 project "Sandbox"
@@ -114,12 +117,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "TL_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "TL_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "TL_DIST"
+		buildoptions "/MD"
 		symbols "On"

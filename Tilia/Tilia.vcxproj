@@ -84,6 +84,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -108,7 +109,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -132,6 +134,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -154,6 +157,8 @@
     <ClInclude Include="src\Tilia\Events\Event.h" />
     <ClInclude Include="src\Tilia\Events\KeyEvent.h" />
     <ClInclude Include="src\Tilia\Events\MouseEvent.h" />
+    <ClInclude Include="src\Tilia\Layer.h" />
+    <ClInclude Include="src\Tilia\LayerStack.h" />
     <ClInclude Include="src\Tilia\Log.h" />
     <ClInclude Include="src\Tilia\Window.h" />
     <ClInclude Include="src\tlpch.h" />
@@ -161,6 +166,8 @@
   <ItemGroup>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Tilia\Application.cpp" />
+    <ClCompile Include="src\Tilia\Layer.cpp" />
+    <ClCompile Include="src\Tilia\LayerStack.cpp" />
     <ClCompile Include="src\Tilia\Log.cpp" />
     <ClCompile Include="src\tlpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
