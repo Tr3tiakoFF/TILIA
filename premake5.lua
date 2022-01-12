@@ -15,8 +15,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 --Include directories reletive to root folder (SolutionDir)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Tilia/vendor/GLFW/include"
+IncludeDir["GLAD"] = "Tilia/vendor/GLAD/include"
 
 include "Tilia/vendor/GLFW"
+include "Tilia/vendor/GLAD"
 
 
 project "Tilia"
@@ -40,12 +42,14 @@ project "Tilia"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}"
 	}
 
 	links
 	{
 		"GLFW",
+		"GLAD",
 		"opengl32.lib"
 	}
 
@@ -57,7 +61,9 @@ project "Tilia"
 		defines 
 		{
 			"TL_PLATFORM_WINDOWS",
-			"TL_BUILD_DLL"
+			"TL_BUILD_DLL",
+
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands

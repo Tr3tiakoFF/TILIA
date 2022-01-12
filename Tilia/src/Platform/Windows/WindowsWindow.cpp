@@ -7,6 +7,8 @@
 #include "Tilia/Events/KeyEvent.h"
 #include "Tilia/Events/MouseEvent.h"
 
+#include <glad/glad.h>
+
 namespace Tilia
 {
 
@@ -52,6 +54,10 @@ namespace Tilia
 
 		m_Window = glfwCreateWindow((int)m_Data.Width, (int)m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		TL_CORE_ASSERT(status, "Failed to initialize GLAD!");
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
