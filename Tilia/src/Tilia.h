@@ -8,6 +8,7 @@
 #include "Tilia/Layer.h"
 #include "Tilia/Log.h"
 
+#include "Tilia/ImGui/ImGuiLayer.h"
 
 
 // -----Entry Point-----------

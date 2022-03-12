@@ -25,7 +25,9 @@ class Sandbox : public Tilia::Application
 public:
 	Sandbox() 
 	{
+		//PushLayer(new Tilia::ImGuiLayer());
 		PushLayer(new ExampleLayer());
+		PushOverlay(new Tilia::ImGuiLayer());
 	}
 	~Sandbox() {}
 };
