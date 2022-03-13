@@ -59,7 +59,6 @@
       <Filter>Tilia</Filter>
     </ClInclude>
     <ClInclude Include="src\tlpch.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
@@ -67,6 +66,9 @@
     </ClCompile>
     <ClCompile Include="src\Tilia\Application.cpp">
       <Filter>Tilia</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tilia\ImGui\ImGuiBuild.cpp">
+      <Filter>Tilia\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Tilia\ImGui\ImGuiLayer.cpp">
       <Filter>Tilia\ImGui</Filter>
@@ -81,7 +83,5 @@
       <Filter>Tilia</Filter>
     </ClCompile>
     <ClCompile Include="src\tlpch.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
-    <ClCompile Include="src\Tilia\ImGui\ImGuiBuild.cpp" />
   </ItemGroup>
 </Project>

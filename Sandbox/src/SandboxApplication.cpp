@@ -26,7 +26,7 @@ public:
 	Sandbox() 
 	{
 		//PushLayer(new Tilia::ImGuiLayer());
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
 		PushOverlay(new Tilia::ImGuiLayer());
 	}
 	~Sandbox() {}
