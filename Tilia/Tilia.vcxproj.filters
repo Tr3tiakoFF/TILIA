@@ -59,6 +59,8 @@
       <Filter>Tilia</Filter>
     </ClInclude>
     <ClInclude Include="src\tlpch.h" />
+    <ClInclude Include="src\Tilia\Input.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
@@ -83,5 +85,6 @@
       <Filter>Tilia</Filter>
     </ClCompile>
     <ClCompile Include="src\tlpch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

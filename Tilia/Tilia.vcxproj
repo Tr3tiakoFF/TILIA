@@ -145,6 +145,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Tilia.h" />
     <ClInclude Include="src\Tilia\Application.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="src\Tilia\Events\KeyEvent.h" />
     <ClInclude Include="src\Tilia\Events\MouseEvent.h" />
     <ClInclude Include="src\Tilia\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Tilia\Input.h" />
     <ClInclude Include="src\Tilia\Layer.h" />
     <ClInclude Include="src\Tilia\LayerStack.h" />
     <ClInclude Include="src\Tilia\Log.h" />
@@ -162,6 +164,7 @@
     <ClInclude Include="src\tlpch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Tilia\Application.cpp" />
     <ClCompile Include="src\Tilia\ImGui\ImGuiBuild.cpp" />
