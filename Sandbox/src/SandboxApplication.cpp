@@ -1,5 +1,7 @@
 #include <Tilia.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public Tilia::Layer
 {
 public:
@@ -12,6 +14,13 @@ public:
 	void OnUpdate() override
 	{
 		TL_INFO("ExampleLayer::Update");
+	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
 	}
 
 	void OnEvent(Tilia::Event& event) override
@@ -27,7 +36,7 @@ public:
 	{
 		//PushLayer(new Tilia::ImGuiLayer());
 		//PushLayer(new ExampleLayer());
-		PushOverlay(new Tilia::ImGuiLayer());
+		//PushOverlay(new Tilia::ImGuiLayer());
 	}
 	~Sandbox() {}
 };

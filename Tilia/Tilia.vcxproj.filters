@@ -18,6 +18,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -46,6 +49,9 @@
     <ClInclude Include="src\Tilia\ImGui\ImGuiLayer.h">
       <Filter>Tilia\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Tilia\Input.h">
+      <Filter>Tilia</Filter>
+    </ClInclude>
     <ClInclude Include="src\Tilia\Layer.h">
       <Filter>Tilia</Filter>
     </ClInclude>
@@ -59,10 +65,11 @@
       <Filter>Tilia</Filter>
     </ClInclude>
     <ClInclude Include="src\tlpch.h" />
-    <ClInclude Include="src\Tilia\Input.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
@@ -85,6 +92,5 @@
       <Filter>Tilia</Filter>
     </ClCompile>
     <ClCompile Include="src\tlpch.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

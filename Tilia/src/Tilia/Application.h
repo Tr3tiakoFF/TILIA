@@ -1,9 +1,13 @@
 #pragma once
 
 #include "Core.h"
+
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
+
 #include "LayerStack.h"
+#include "Tilia/ImGui/ImGuiLayer.h"
+
 #include "Window.h"
 
 namespace Tilia {
@@ -29,6 +33,7 @@ namespace Tilia {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

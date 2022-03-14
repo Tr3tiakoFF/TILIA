@@ -108,7 +108,8 @@ project "Sandbox"
 	includedirs
 	{
 		"Tilia/vendor/spdlog/include",
-		"Tilia/src"
+		"Tilia/src",
+		"Tilia/vendor"
 	}
 
 	links 
