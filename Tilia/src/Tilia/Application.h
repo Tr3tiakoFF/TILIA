@@ -36,7 +36,7 @@ namespace Tilia {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
+	private:
 		static Application* s_Instance;
 	};
 

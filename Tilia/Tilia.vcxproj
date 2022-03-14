@@ -157,9 +157,11 @@
     <ClInclude Include="src\Tilia\Events\MouseEvent.h" />
     <ClInclude Include="src\Tilia\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Tilia\Input.h" />
+    <ClInclude Include="src\Tilia\KeyCodes.h" />
     <ClInclude Include="src\Tilia\Layer.h" />
     <ClInclude Include="src\Tilia\LayerStack.h" />
     <ClInclude Include="src\Tilia\Log.h" />
+    <ClInclude Include="src\Tilia\MouseButtonCodes.h" />
     <ClInclude Include="src\Tilia\Window.h" />
     <ClInclude Include="src\tlpch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />

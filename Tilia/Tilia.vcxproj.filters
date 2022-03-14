@@ -78,6 +78,9 @@
     <ClInclude Include="src\Tilia\Input.h">
       <Filter>src\Tilia</Filter>
     </ClInclude>
+    <ClInclude Include="src\Tilia\KeyCodes.h">
+      <Filter>src\Tilia</Filter>
+    </ClInclude>
     <ClInclude Include="src\Tilia\Layer.h">
       <Filter>src\Tilia</Filter>
     </ClInclude>
@@ -85,6 +88,9 @@
       <Filter>src\Tilia</Filter>
     </ClInclude>
     <ClInclude Include="src\Tilia\Log.h">
+      <Filter>src\Tilia</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tilia\MouseButtonCodes.h">
       <Filter>src\Tilia</Filter>
     </ClInclude>
     <ClInclude Include="src\Tilia\Window.h">

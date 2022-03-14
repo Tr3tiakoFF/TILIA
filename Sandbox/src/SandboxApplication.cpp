@@ -13,7 +13,8 @@ public:
 	
 	void OnUpdate() override
 	{
-		TL_INFO("ExampleLayer::Update");
+		if (Tilia::Input::IsKeyPressed(TL_KEY_TAB))
+			TL_TRACE("Tab key is pressed (poll)!");
 	}
 
 	virtual void OnImGuiRender() override
@@ -25,7 +26,13 @@ public:
 
 	void OnEvent(Tilia::Event& event) override
 	{
-		TL_TRACE("{0}", event);
+		if (event.GetEventType() == Tilia::EventType::KeyPressed)
+		{
+			Tilia::KeyPressedEvent& e = (Tilia::KeyPressedEvent&)event;
+			if(e.GetKeyCode() == TL_KEY_TAB)
+				TL_TRACE("Tab key is pressed (event)!");
+			TL_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 
@@ -34,9 +41,7 @@ class Sandbox : public Tilia::Application
 public:
 	Sandbox() 
 	{
-		//PushLayer(new Tilia::ImGuiLayer());
-		//PushLayer(new ExampleLayer());
-		//PushOverlay(new Tilia::ImGuiLayer());
+		PushLayer(new ExampleLayer());
 	}
 	~Sandbox() {}
 };

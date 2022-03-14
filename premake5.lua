@@ -113,8 +113,8 @@ project "Sandbox"
 	{
 		"Tilia/vendor/spdlog/include",
 		"Tilia/src",
-		"%{IncludeDir.GLM}",
-		"Tilia/vendor"
+		"Tilia/vendor",
+		"%{IncludeDir.GLM}"
 	}
 
 	links 
