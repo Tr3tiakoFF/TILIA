@@ -21,6 +21,9 @@ namespace Tilia {
 		void Begin();
 		void End();
 
+		void SetDarkThemeColors();
+		void SetDarkMagentaThemeColors();
+
 	private:
 		float m_Time = 0.0f;
 	};
