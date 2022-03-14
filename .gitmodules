@@ -7,3 +7,6 @@
 [submodule "Tilia/vendor/imgui"]
 	path = Tilia/vendor/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "Tilia/vendor/glm"]
+	path = Tilia/vendor/glm
+	url = https://github.com/g-truc/glm

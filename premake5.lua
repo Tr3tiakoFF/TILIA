@@ -17,6 +17,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Tilia/vendor/GLFW/include"
 IncludeDir["GLAD"] = "Tilia/vendor/GLAD/include"
 IncludeDir["ImGui"] = "Tilia/vendor/imgui"
+IncludeDir["GLM"] = "Tilia/vendor/glm"
 
 include "Tilia/vendor/GLFW"
 include "Tilia/vendor/GLAD"
@@ -38,7 +39,9 @@ project "Tilia"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -47,7 +50,8 @@ project "Tilia"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.GLM}"
 	}
 
 	links
@@ -109,6 +113,7 @@ project "Sandbox"
 	{
 		"Tilia/vendor/spdlog/include",
 		"Tilia/src",
+		"%{IncludeDir.GLM}",
 		"Tilia/vendor"
 	}
 
