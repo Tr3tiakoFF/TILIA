@@ -6,7 +6,7 @@
 
 namespace Tilia {
 
-	class TILIA_API KeyEvent : public Event
+	class KeyEvent : public Event
 	{
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
@@ -19,7 +19,7 @@ namespace Tilia {
 		int m_KeyCode;
 	};
 
-	class TILIA_API KeyPressedEvent : public KeyEvent
+	class KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
@@ -39,7 +39,7 @@ namespace Tilia {
 		int m_RepeatCount;
 	};
 
-	class TILIA_API KeyReleasedEvent : public KeyEvent
+	class KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int keycode)
@@ -55,7 +55,7 @@ namespace Tilia {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
-	class TILIA_API KeyTypedEvent : public KeyEvent
+	class KeyTypedEvent : public KeyEvent
 	{
 	public:
 		KeyTypedEvent(int keycode)

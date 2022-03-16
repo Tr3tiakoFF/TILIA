@@ -1,16 +1,6 @@
 #pragma once
 
 #ifdef TL_PLATFORM_WINDOWS
-#if TL_DYNAMIC_LINK
-	#ifdef TL_BUILD_DLL
-		#define TILIA_API __declspec(dllexport)
-	#else
-		#define TILIA_API __declspec(dllimport)
-	#endif
-
-#else
-	#define TILIA_API
-#endif
 #else 
 	#error Tilia only support Windows! (for now)
 #endif

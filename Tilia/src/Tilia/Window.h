@@ -18,7 +18,7 @@ namespace Tilia {
 			: Title(title), Width(width), Height(height) {}
 	};
 
-	class TILIA_API Window
+	class Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

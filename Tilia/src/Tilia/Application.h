@@ -12,7 +12,7 @@
 
 namespace Tilia {
 
-	class TILIA_API Application
+	class Application
 	{
 	public:
 		Application();

@@ -8,7 +8,7 @@
 namespace Tilia
 {
 
-	class TILIA_API LayerStack
+	class LayerStack
 	{
 	public:
 		LayerStack();

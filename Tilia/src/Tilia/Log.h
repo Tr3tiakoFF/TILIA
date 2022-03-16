@@ -11,7 +11,7 @@
 
 namespace Tilia {
 
-	class TILIA_API Log
+	class Log
 	{
 	public:
 		static void Init();
