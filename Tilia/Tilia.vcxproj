@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Tilia.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="src\Tilia\LayerStack.h" />
     <ClInclude Include="src\Tilia\Log.h" />
     <ClInclude Include="src\Tilia\MouseButtonCodes.h" />
+    <ClInclude Include="src\Tilia\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Tilia\Window.h" />
     <ClInclude Include="src\tlpch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -576,6 +578,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Tilia\Application.cpp" />
