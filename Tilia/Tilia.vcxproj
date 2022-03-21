@@ -159,6 +159,7 @@
     <ClInclude Include="src\Tilia\Log.h" />
     <ClInclude Include="src\Tilia\MouseButtonCodes.h" />
     <ClInclude Include="src\Tilia\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Tilia\Renderer\Shader.h" />
     <ClInclude Include="src\Tilia\Window.h" />
     <ClInclude Include="src\tlpch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -587,6 +588,7 @@
     <ClCompile Include="src\Tilia\Layer.cpp" />
     <ClCompile Include="src\Tilia\LayerStack.cpp" />
     <ClCompile Include="src\Tilia\Log.cpp" />
+    <ClCompile Include="src\Tilia\Renderer\Shader.cpp" />
     <ClCompile Include="src\tlpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

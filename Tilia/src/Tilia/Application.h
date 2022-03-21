@@ -2,13 +2,15 @@
 
 #include "Core.h"
 
+#include "Window.h"
+
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 
 #include "LayerStack.h"
 #include "Tilia/ImGui/ImGuiLayer.h"
 
-#include "Window.h"
+#include <Tilia/Renderer/Shader.h>
 
 namespace Tilia {
 
@@ -40,6 +42,7 @@ namespace Tilia {
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
 	private:
 		static Application* s_Instance;
+		std::unique_ptr<Shader> m_Shader;
 	};
 
 	//To be defined in CLIENT
