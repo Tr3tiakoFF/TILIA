@@ -5,3 +5,8 @@ bin-int/
 
 # Files
 *.user
+Tilia.sln
+Tilia/Tilia.vcxproj
+Tilia/Tilia.vcxproj.filters
+Sandbox/Sandbox.vcxproj
+Sandbox/Sandbox.vcxproj.filters
