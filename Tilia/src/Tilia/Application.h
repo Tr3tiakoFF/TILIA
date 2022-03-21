@@ -10,7 +10,8 @@
 #include "LayerStack.h"
 #include "Tilia/ImGui/ImGuiLayer.h"
 
-#include <Tilia/Renderer/Shader.h>
+#include "Tilia/Renderer/Shader.h"
+#include "Tilia/Renderer/Buffer.h"
 
 namespace Tilia {
 
@@ -39,10 +40,12 @@ namespace Tilia {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		unsigned int m_VertexArray;
 	private:
 		static Application* s_Instance;
 		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 	};
 
 	//To be defined in CLIENT
