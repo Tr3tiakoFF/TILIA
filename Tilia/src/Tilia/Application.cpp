@@ -26,7 +26,8 @@ namespace Tilia {
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
-		m_VertexArray.reset(VertexArray::Create());
+		m_VertexArrayForTriangle.reset(VertexArray::Create());
+		m_VertexArrayForSquare.reset(VertexArray::Create());
 
 		/*
 		float vertices[3 * 7] = {
@@ -36,61 +37,105 @@ namespace Tilia {
 		};
 		*/
 
-		float vertices[6 * 7] = {
+		float verticesForTriangle[3 * (3 + 4)] = {
 			-0.5f, -0.65f, 0.0f, 0.8f, 0.2f, 0.2f, 1.0f,
 			 0.5f, -0.65f, 0.0f, 0.2f, 0.2f, 0.8f, 1.0f,
 			 0.0f,  0.71f, 0.0f, 0.2f, 0.8f, 0.2f, 1.0f,
 		};
 
-		std::shared_ptr<VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+		float verticesForSquare[4 * (3 + 4)] = {
+			-0.9f, -0.9f, 0.0f, 0.2f, 0.2f, 0.2f, 1.0f,
+			 0.9f, -0.9f, 0.0f, 0.1f, 0.1f, 0.1f, 1.0f,
+			 0.9f,  0.9f, 0.0f, 0.2f, 0.2f, 0.2f, 1.0f,
+			-0.9f,  0.9f, 0.0f, 0.3f, 0.3f, 0.3f, 1.0f,
+		};
+
 		BufferLayout layout = {
 			{ ShaderDataType::Float3, "a_Position" },
 			{ ShaderDataType::Float4, "a_Color" }
 		};
-		vertexBuffer->SetLayout(layout);
-		m_VertexArray->AddVertexBuffer(vertexBuffer);
+
+		std::shared_ptr<VertexBuffer> vertexBufferForTriangle;
+		vertexBufferForTriangle.reset(VertexBuffer::Create(verticesForTriangle, sizeof(verticesForTriangle)));
+		vertexBufferForTriangle->SetLayout(layout);
+		m_VertexArrayForTriangle->AddVertexBuffer(vertexBufferForTriangle);
+
+		std::shared_ptr<VertexBuffer> vertexBufferForSquare;
+		vertexBufferForSquare.reset(VertexBuffer::Create(verticesForSquare, sizeof(verticesForSquare)));
+		vertexBufferForSquare->SetLayout(layout);
+		m_VertexArrayForSquare->AddVertexBuffer(vertexBufferForSquare);
 
 
-		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<IndexBuffer> indexBuffer;
-		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-		m_VertexArray->SetIndexBuffer(indexBuffer);
+		uint32_t indicesForTriangle[3] = { 0, 1, 2 };
+		std::shared_ptr<IndexBuffer> indexBufferForTriangle;
+		indexBufferForTriangle.reset(IndexBuffer::Create(indicesForTriangle, sizeof(indicesForTriangle) / sizeof(uint32_t)));
+		m_VertexArrayForTriangle->SetIndexBuffer(indexBufferForTriangle);
 
-		std::string vertexSrc = R"(
+		uint32_t indicesForSquare[6] = { 0, 1, 2, 2, 3, 0 };
+		std::shared_ptr<IndexBuffer> indexBufferForSquare;
+		indexBufferForSquare.reset(IndexBuffer::Create(indicesForSquare, sizeof(indicesForSquare) / sizeof(uint32_t)));
+		m_VertexArrayForSquare->SetIndexBuffer(indexBufferForSquare);
+
+		std::string vertexSrcForTriangle = R"(
 			#version 330 core
 
 			layout(location = 0) in vec3 a_Position;
 			layout(location = 1) in vec4 a_Color;
 
-			out vec3 v_Position;
 			out vec4 v_Color;
 
 			void main()
 			{
-				v_Position = a_Position;
 				v_Color = a_Color;
 
 				gl_Position = vec4(a_Position, 1.0);	
 			}
 		)";
 
-		std::string fragmentSrc = R"(
+		std::string fragmentSrcForTriangle = R"(
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
 
-			in vec3 v_Position;
 			in vec4 v_Color;
 
 			void main()
 			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
 				color = v_Color;
 			}
 		)";
 
-		m_Shader.reset(new Shader(vertexSrc, fragmentSrc));
+		std::string vertexSrcForSquare = R"(
+			#version 330 core
+
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec4 a_Color;
+
+			out vec4 v_Color;
+
+			void main()
+			{
+				v_Color = a_Color;
+
+				gl_Position = vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string fragmentSrcForSquare = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec4 v_Color;
+
+			void main()
+			{
+				color = v_Color;
+			}
+		)";
+
+		m_ShaderForTriangle.reset(new Shader(vertexSrcForTriangle, fragmentSrcForTriangle));
+		m_ShaderForSquare.reset(new Shader(vertexSrcForSquare, fragmentSrcForSquare));
 	}
 
 	Application::~Application()
@@ -119,9 +164,13 @@ namespace Tilia {
 
 			//Renderer::BeginScene();
 
-			m_Shader->Bind();
-			m_VertexArray->Bind();
-			Renderer::Submit(m_VertexArray);
+			m_ShaderForSquare->Bind();
+			m_VertexArrayForSquare->Bind();
+			Renderer::Submit(m_VertexArrayForSquare);
+
+			m_ShaderForTriangle->Bind();
+			m_VertexArrayForTriangle->Bind();
+			Renderer::Submit(m_VertexArrayForTriangle);
 
 			//Renderer::EndScene();
 
