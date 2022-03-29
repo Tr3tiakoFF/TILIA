@@ -42,11 +42,6 @@ namespace Tilia {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_ShaderForTriangle;
-		std::shared_ptr<Shader> m_ShaderForSquare;
-		std::shared_ptr<VertexArray> m_VertexArrayForTriangle;
-		std::shared_ptr<VertexArray> m_VertexArrayForSquare;
 	private:
 		static Application* s_Instance;
 
