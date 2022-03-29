@@ -14,6 +14,8 @@
 #include "Tilia/Renderer/Buffer.h"
 #include "Tilia/Renderer/VertexArray.h"
 
+#include <Tilia/Renderer/OrthographicCamera.h>
+
 namespace Tilia {
 
 	class Application
@@ -47,6 +49,8 @@ namespace Tilia {
 		std::shared_ptr<VertexArray> m_VertexArrayForSquare;
 	private:
 		static Application* s_Instance;
+
+		OrthographicCamera m_Camera;
 	};
 
 	//To be defined in CLIENT

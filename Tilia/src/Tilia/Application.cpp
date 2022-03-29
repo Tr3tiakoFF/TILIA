@@ -16,6 +16,7 @@ namespace Tilia {
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
+		: m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
 		TL_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
@@ -38,16 +39,16 @@ namespace Tilia {
 		*/
 
 		float verticesForTriangle[3 * (3 + 4)] = {
-			-0.5f, -0.65f, 0.0f, 0.8f, 0.2f, 0.2f, 1.0f,
-			 0.5f, -0.65f, 0.0f, 0.2f, 0.2f, 0.8f, 1.0f,
-			 0.0f,  0.71f, 0.0f, 0.2f, 0.8f, 0.2f, 1.0f,
+			 0.00f,  0.50f, 0.0f, 0.8f, 0.2f, 0.2f, 1.0f,
+			 0.43f, -0.25f, 0.0f, 0.2f, 0.2f, 0.8f, 1.0f,
+			-0.43f, -0.25f, 0.0f, 0.2f, 0.8f, 0.2f, 1.0f,
 		};
 
 		float verticesForSquare[4 * (3 + 4)] = {
-			-0.9f, -0.9f, 0.0f, 0.2f, 0.2f, 0.2f, 1.0f,
-			 0.9f, -0.9f, 0.0f, 0.1f, 0.1f, 0.1f, 1.0f,
-			 0.9f,  0.9f, 0.0f, 0.2f, 0.2f, 0.2f, 1.0f,
-			-0.9f,  0.9f, 0.0f, 0.3f, 0.3f, 0.3f, 1.0f,
+			-0.6f, -0.5f, 0.0f, 0.2f, 0.2f, 0.2f, 1.0f,
+			 0.6f, -0.5f, 0.0f, 0.1f, 0.1f, 0.1f, 1.0f,
+			 0.6f,  0.6f, 0.0f, 0.2f, 0.2f, 0.2f, 1.0f,
+			-0.6f,  0.6f, 0.0f, 0.3f, 0.3f, 0.3f, 1.0f,
 		};
 
 		BufferLayout layout = {
@@ -82,13 +83,15 @@ namespace Tilia {
 			layout(location = 0) in vec3 a_Position;
 			layout(location = 1) in vec4 a_Color;
 
+			uniform mat4 u_ViewProjection;
+
 			out vec4 v_Color;
 
 			void main()
 			{
 				v_Color = a_Color;
 
-				gl_Position = vec4(a_Position, 1.0);	
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -111,13 +114,15 @@ namespace Tilia {
 			layout(location = 0) in vec3 a_Position;
 			layout(location = 1) in vec4 a_Color;
 
+			uniform mat4 u_ViewProjection;
+
 			out vec4 v_Color;
 
 			void main()
 			{
 				v_Color = a_Color;
 
-				gl_Position = vec4(a_Position, 1.0);	
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -162,17 +167,12 @@ namespace Tilia {
 			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 			RenderCommand::Clear();
 
-			//Renderer::BeginScene();
+			Renderer::BeginScene(m_Camera);
 
-			m_ShaderForSquare->Bind();
-			m_VertexArrayForSquare->Bind();
-			Renderer::Submit(m_VertexArrayForSquare);
+			Renderer::Submit(m_ShaderForSquare, m_VertexArrayForSquare);
+			Renderer::Submit(m_ShaderForTriangle, m_VertexArrayForTriangle);
 
-			m_ShaderForTriangle->Bind();
-			m_VertexArrayForTriangle->Bind();
-			Renderer::Submit(m_VertexArrayForTriangle);
-
-			//Renderer::EndScene();
+			Renderer::EndScene();
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();

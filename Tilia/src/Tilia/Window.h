@@ -13,8 +13,8 @@ namespace Tilia {
 		unsigned int Height;
 
 		WindowProps(const std::string& title = "Tilia Engine",
-			unsigned const width = 1280,
-			unsigned const height = 720)
+			unsigned const width = 1600,
+			unsigned const height = 900)
 			: Title(title), Width(width), Height(height) {}
 	};
 
