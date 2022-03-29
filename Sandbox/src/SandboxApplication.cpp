@@ -175,6 +175,18 @@ public:
 
 	void OnEvent(Tilia::Event& event) override
 	{
+		Tilia::EventDispatcher dispatxher(event);
+		dispatxher.Dispatch<Tilia::KeyPressedEvent>(TL_BIND_EVENT_FN(ExampleLayer::OnKeyPressedEvent));
+	}
+
+	bool OnKeyPressedEvent(Tilia::KeyPressedEvent& event)
+	{
+		if (event.GetKeyCode() == TL_KEY_R) {
+			m_CameraPosition = { 0.0f, 0.0f, 0.0f };
+			m_CameraRotation = 0;
+		}
+
+		return false;
 	}
 
 private:
@@ -187,10 +199,10 @@ private:
 
 	Tilia::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 0.2f;
+	float m_CameraMoveSpeed = 0.01f;
 
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 2.0f;
+	float m_CameraRotationSpeed = 1.5f;
 };
 
 class Sandbox : public Tilia::Application 
