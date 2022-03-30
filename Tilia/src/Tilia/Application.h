@@ -10,11 +10,7 @@
 #include "LayerStack.h"
 #include "Tilia/ImGui/ImGuiLayer.h"
 
-#include "Tilia/Renderer/Shader.h"
-#include "Tilia/Renderer/Buffer.h"
-#include "Tilia/Renderer/VertexArray.h"
-
-#include <Tilia/Renderer/OrthographicCamera.h>
+#include "Core/Timestep.h"
 
 namespace Tilia {
 
@@ -42,10 +38,10 @@ namespace Tilia {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+		float m_LastFrameTime;
 	private:
 		static Application* s_Instance;
-
-		OrthographicCamera m_Camera;
 	};
 
 	//To be defined in CLIENT

@@ -8,6 +8,7 @@
 #include "Renderer/Renderer.h"
 
 #include "Input.h"
+#include <GLFW/glfw3.h>
 
 namespace Tilia {
 
@@ -16,7 +17,7 @@ namespace Tilia {
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
-		: m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
+		: m_LastFrameTime((float)glfwGetTime())
 	{
 		TL_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
@@ -49,8 +50,12 @@ namespace Tilia {
 	{
 		while (m_Running)
 		{
+			float currentTime = (float)glfwGetTime();
+			Timestep timestep = currentTime - m_LastFrameTime;
+			m_LastFrameTime = currentTime;
+
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)

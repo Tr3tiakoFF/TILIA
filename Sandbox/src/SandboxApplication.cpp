@@ -124,30 +124,39 @@ public:
 		m_ShaderForSquare.reset(new Tilia::Shader(vertexSrcForSquare, fragmentSrcForSquare));
 	}
 	
-	void OnUpdate() override
+	void OnUpdate(Tilia::Timestep ts) override
 	{
 		if (Tilia::Input::IsKeyPressed(TL_KEY_A)) {
-			m_CameraPosition.x -= m_CameraMoveSpeed * glm::cos(glm::radians(m_CameraRotation));
-			m_CameraPosition.y -= m_CameraMoveSpeed * glm::sin(glm::radians(m_CameraRotation));
+			m_CameraPosition.x -= m_CameraMoveSpeed * glm::cos(glm::radians(m_CameraRotation)) * ts;
+			m_CameraPosition.y -= m_CameraMoveSpeed * glm::sin(glm::radians(m_CameraRotation)) * ts;
 		}
 		else if (Tilia::Input::IsKeyPressed(TL_KEY_D)) {
-			m_CameraPosition.x += m_CameraMoveSpeed * glm::cos(glm::radians(m_CameraRotation));
-			m_CameraPosition.y += m_CameraMoveSpeed * glm::sin(glm::radians(m_CameraRotation));
+			m_CameraPosition.x += m_CameraMoveSpeed * glm::cos(glm::radians(m_CameraRotation)) * ts;
+			m_CameraPosition.y += m_CameraMoveSpeed * glm::sin(glm::radians(m_CameraRotation)) * ts;
 		}
 
 		if (Tilia::Input::IsKeyPressed(TL_KEY_W)) {
-			m_CameraPosition.x -= m_CameraMoveSpeed * glm::sin(glm::radians(m_CameraRotation));
-			m_CameraPosition.y += m_CameraMoveSpeed * glm::cos(glm::radians(m_CameraRotation));
+			m_CameraPosition.x -= m_CameraMoveSpeed * glm::sin(glm::radians(m_CameraRotation)) * ts;
+			m_CameraPosition.y += m_CameraMoveSpeed * glm::cos(glm::radians(m_CameraRotation)) * ts;
 		}
 		else if (Tilia::Input::IsKeyPressed(TL_KEY_S)) {
-			m_CameraPosition.x += m_CameraMoveSpeed * glm::sin(glm::radians(m_CameraRotation));
-			m_CameraPosition.y -= m_CameraMoveSpeed * glm::cos(glm::radians(m_CameraRotation));
+			m_CameraPosition.x += m_CameraMoveSpeed * glm::sin(glm::radians(m_CameraRotation)) * ts;
+			m_CameraPosition.y -= m_CameraMoveSpeed * glm::cos(glm::radians(m_CameraRotation)) * ts;
 		}
 
 		if (Tilia::Input::IsKeyPressed(TL_KEY_Q))
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * ts;
 		if (Tilia::Input::IsKeyPressed(TL_KEY_E))
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
+
+		//NOT WORKING WITH ROTATION CURRENTLY
+		/*
+		if (Tilia::Input::IsMouseButtonPressed(TL_MOUSE_BUTTON_1)) {
+			glm::vec2 cameraSpeedVector = glm::normalize(glm::vec2(Tilia::Input::GetMouseX() - 800.0f, (-1) * Tilia::Input::GetMouseY() + 450.0f)) * m_CameraMoveSpeed;
+			m_CameraPosition.x += cameraSpeedVector.x;
+			m_CameraPosition.y += cameraSpeedVector.y;
+		}
+		*/
 
 		Tilia::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Tilia::RenderCommand::Clear();
@@ -199,10 +208,10 @@ private:
 
 	Tilia::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 0.01f;
+	float m_CameraMoveSpeed = 3.0f;
 
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 1.5f;
+	float m_CameraRotationSpeed = 90.0f;
 };
 
 class Sandbox : public Tilia::Application 

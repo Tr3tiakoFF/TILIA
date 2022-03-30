@@ -8,7 +8,7 @@
 
 #include "Tilia/Log.h"
 
-//#include "Tilia/Core/Timestep.h"
+#include "Tilia/Core/Timestep.h"
 
 #include "Tilia/Input.h"
 #include "Tilia/KeyCodes.h"
