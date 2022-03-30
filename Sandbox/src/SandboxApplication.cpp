@@ -1,6 +1,7 @@
 #include <Tilia.h>
 
 #include "imgui/imgui.h"
+#include <glm/glm/ext/matrix_transform.hpp>
 
 class ExampleLayer : public Tilia::Layer
 {
@@ -26,10 +27,10 @@ public:
 		};
 
 		float verticesForSquare[4 * (3 + 4)] = {
-			-0.6f, -0.5f, 0.0f, 0.2f, 0.2f, 0.2f, 1.0f,
-			 0.6f, -0.5f, 0.0f, 0.1f, 0.1f, 0.1f, 1.0f,
-			 0.6f,  0.6f, 0.0f, 0.2f, 0.2f, 0.2f, 1.0f,
-			-0.6f,  0.6f, 0.0f, 0.3f, 0.3f, 0.3f, 1.0f,
+			-0.5f, -0.5f, 0.0f, 0.2f, 0.2f, 0.2f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 0.1f, 0.1f, 0.1f, 1.0f,
+			 0.5f,  0.5f, 0.0f, 0.2f, 0.2f, 0.2f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.3f, 0.3f, 0.3f, 1.0f,
 		};
 
 		Tilia::BufferLayout layout = {
@@ -65,6 +66,7 @@ public:
 			layout(location = 1) in vec4 a_Color;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec4 v_Color;
 
@@ -72,7 +74,7 @@ public:
 			{
 				v_Color = a_Color;
 
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -96,6 +98,7 @@ public:
 			layout(location = 1) in vec4 a_Color;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec4 v_Color;
 
@@ -103,7 +106,7 @@ public:
 			{
 				v_Color = a_Color;
 
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -149,6 +152,11 @@ public:
 		if (Tilia::Input::IsKeyPressed(TL_KEY_E))
 			m_CameraRotation -= m_CameraRotationSpeed * ts;
 
+		if (Tilia::Input::IsKeyPressed(TL_KEY_Z))
+			m_squareScale += 0.1f * ts;
+		if (Tilia::Input::IsKeyPressed(TL_KEY_X))
+			m_squareScale -= 0.1f * ts;
+
 		//NOT WORKING WITH ROTATION CURRENTLY
 		/*
 		if (Tilia::Input::IsMouseButtonPressed(TL_MOUSE_BUTTON_1)) {
@@ -164,13 +172,19 @@ public:
 		m_Camera.SetPosition(m_CameraPosition);
 		m_Camera.SetRotation(m_CameraRotation);
 
-		Tilia::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-		Tilia::RenderCommand::Clear();
-
 		Tilia::Renderer::BeginScene(m_Camera);
 		
-		Tilia::Renderer::Submit(m_ShaderForSquare, m_VertexArrayForSquare);
-		Tilia::Renderer::Submit(m_ShaderForTriangle, m_VertexArrayForTriangle);
+
+		glm::mat4 squareScale = glm::scale(glm::mat4(1.0f), glm::vec3(m_squareScale));
+		float distBetweenSquares = 0.1f;
+		for (int x = -10; x <= 10; x++) 
+		{
+			for (int y = -10; y <= 10; y++) 
+			{
+				Tilia::Renderer::Submit(m_ShaderForSquare, m_VertexArrayForSquare, squareScale * glm::translate(glm::mat4(1.0f), glm::vec3(x + distBetweenSquares * x, y + distBetweenSquares * y, 0.0f)));
+			}
+		}
+		//Tilia::Renderer::Submit(m_ShaderForTriangle, m_VertexArrayForTriangle);
 
 		Tilia::Renderer::EndScene();
 	}
@@ -212,6 +226,8 @@ private:
 
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 90.0f;
+
+	float m_squareScale = 0.4f;
 };
 
 class Sandbox : public Tilia::Application 
